@@ -10,9 +10,6 @@ public class GeneratePrefab : MonoBehaviour {
 
 	public Sprite[] sprites;
 
-	/// <summary>
-	/// Awake is called when the script instance is being loaded.
-	/// </summary>
 	void Awake()
 	{
 		float groundBoundsLeft = -ground.transform.localScale.x / 2;
@@ -24,10 +21,11 @@ public class GeneratePrefab : MonoBehaviour {
 					groundBoundsLeft,
 					groundBoundsRight
 				),
-				0,
+				ground.transform.position.y,
 				0
 			),
 			Quaternion.identity);
+			NewCitizen.transform.parent = transform;
 			RandomizeSprite(NewCitizen, "NPC");
 		}
 	}
