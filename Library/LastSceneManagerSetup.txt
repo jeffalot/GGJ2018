@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/pigeontest-fluid.unity
+- path: Assets/pigeontest-hinge.unity
   isLoaded: 1
   isActive: 1
