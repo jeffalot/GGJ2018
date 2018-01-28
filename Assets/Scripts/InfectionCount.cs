@@ -30,20 +30,27 @@ public class InfectionCount : MonoBehaviour {
 
         if (GameObject.FindGameObjectsWithTag("Infected").Length > 20)
         {
+            destroyScenery();
         }
 
-
+        
         return infectedThings;
 
     }
 
     void destroyScenery()
     {
-        //var setPieces : HingeJoint[] = FindObjectsOfType(HingeJoint) as HingeJoint[];
-        //for (var hinge : HingeJoint in hinges)
-        //{
-        //    hinge.useSpring = false;
-        //}
+
+        Component[] objects = Resources.FindObjectsOfTypeAll(typeof(SetPieceBehavior)) as Component[];
+
+            foreach (Object o in objects)
+        {
+            Debug.Log(o.ToString());
+            GameObject go = (GameObject)o;
+            SetPieceBehavior spb = go.GetComponent<SetPieceBehavior>();
+            spb.RandomizeDestruction(0);
+        }
+
     }
 
 }

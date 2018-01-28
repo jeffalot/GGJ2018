@@ -9,12 +9,12 @@ public class SetPieceBehavior : MonoBehaviour {
 
 
     //Function to set destruction level, baseDestructionLevel 
-    void RandomizeDestruction(string spriteName, int baseDestructionLevel)
+    public void RandomizeDestruction(int baseDestructionLevel)
     {
         // Randomize Destruction
         SpriteRenderer spriteR = GetComponent<SpriteRenderer>();
         Sprite RandomSprite = sprites[Random.Range(0, sprites.Length)];
-        Debug.Log(spriteName + Random.Range(0, 10));
+        //Debug.Log(spriteName + Random.Range(0, 10));
         spriteR.sprite = RandomSprite;
     }
 
