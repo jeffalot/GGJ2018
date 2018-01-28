@@ -5,6 +5,13 @@ using UnityEngine;
 public class Infect : MonoBehaviour 
 {
 
+    bool infected;
+
+
+    //Higher toxicity means more likely to imediately infect
+    public float toxicity = 10f;
+   
+
     ParticleSystem ps;
 
     private void Start()
@@ -16,7 +23,7 @@ public class Infect : MonoBehaviour
 
     void OnCollisionEnter2D (Collision2D collision)
 	{
-		if (collision.gameObject.tag == "Infected"){
+		if (collision.gameObject.tag == "Infected" && (Random.Range(0, 100) < ((Infect) collision.gameObject.GetComponent<Infect>()).toxicity)) {
 			this.gameObject.tag = "Infected";
             ps.Play();
 		}

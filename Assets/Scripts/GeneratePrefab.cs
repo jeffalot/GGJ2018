@@ -20,7 +20,7 @@ public class GeneratePrefab : MonoBehaviour {
 						groundBoundsLeft,
 						groundBoundsRight
 					),
-					ground.transform.position.y,
+					ground.transform.position.y + 100,
 					0
 				),
 				Quaternion.identity);
@@ -31,7 +31,7 @@ public class GeneratePrefab : MonoBehaviour {
 	}
 	void RandomizeSprite (GameObject prefab, string spriteName) {
 		// Randomize Sprite
-		SpriteRenderer spriteR = prefab.GetComponent<SpriteRenderer> ();
+		SpriteRenderer spriteR = prefab.GetComponentInChildren<SpriteRenderer> ();
 		Sprite RandomSprite = sprites[Random.Range (0, sprites.Length)];
 		Debug.Log (spriteName + Random.Range (0, 10));
 		spriteR.sprite = RandomSprite;

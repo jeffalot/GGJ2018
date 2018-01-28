@@ -6,8 +6,8 @@ public class NPCBehavior : MonoBehaviour {
 
 
     public float speed = 100f;
-    public int freq = 2;
-    public int amp = 2;
+    public float freq = .5f;
+    public float amp = .5f;
 
     public float seed = 0f;
 
