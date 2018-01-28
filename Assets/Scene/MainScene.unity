@@ -161,26 +161,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 16
-    m_FontStyle: 1
+    m_Font: {fileID: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 86
-    m_Alignment: 4
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: GAME OVER TEXT
+  m_Text: 
 --- !u!222 &39368179
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -300,13 +300,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 264f6d5b7c204488092cd66ab2d3f637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 1906817609}
-  infectedText: {fileID: 1463692362}
-  restartText: {fileID: 1745049842}
-  gameOverText: {fileID: 39368178}
-  checkpoints:
-  - {fileID: 1608363095}
-  - {fileID: 799138395}
+  infectedText: {fileID: 0}
+  restartText: {fileID: 0}
+  gameOverText: {fileID: 0}
+  goals: []
+  homeBase: {fileID: 0}
 --- !u!4 &59881565
 Transform:
   m_ObjectHideFlags: 0
@@ -455,8 +453,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99024f33adb6419296161e93645b595, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraBoundsMin: {fileID: 0}
-  cameraBoundsMax: {fileID: 0}
+  cameraBoundsMin: {fileID: 711932071}
+  cameraBoundsMax: {fileID: 711932071}
 --- !u!1 &101753365
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,12 +805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5506ccf528167514aa3aee3a5baebab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: 12acd6a9c4d17164aa0d18aa3ef85433, type: 3}
-  - {fileID: 21300000, guid: 88e0d68d68d330444b9316c41fe48ace, type: 3}
-  - {fileID: 21300000, guid: 6119b6ae373a0a84babd32d4f3c52ccf, type: 3}
-  - {fileID: 21300000, guid: 6c61f032f0766d14c9b3e9de965db2d8, type: 3}
-  - {fileID: 21300000, guid: 8911a8b6da1df3f4ebdd2ac710a63bbb, type: 3}
+  sprites: []
 --- !u!212 &436547305
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1253,6 +1246,10 @@ Prefab:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1643939800415940, guid: fe9309cce4eaecb4fa8fb6659134ba44, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe9309cce4eaecb4fa8fb6659134ba44, type: 2}
   m_IsPrefabParent: 0
@@ -1395,6 +1392,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.5205994, y: 4.6487484}
   m_EdgeRadius: 0
+--- !u!1 &711932071 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1330991227532864, guid: fe9309cce4eaecb4fa8fb6659134ba44,
+    type: 2}
+  m_PrefabInternal: {fileID: 571353341}
 --- !u!1 &721775394
 GameObject:
   m_ObjectHideFlags: 0
@@ -1838,23 +1840,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd03771f94bb94055a7202d3284611b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1738921443373374, guid: a5e10d27bbe32426198ab77ca92cd56a, type: 2}
-  prefabAmount: 100
-  ground: {fileID: 1965394191}
-  sprites:
-  - {fileID: 21300000, guid: 0b14ca19df011433b831de1edb02320f, type: 3}
-  - {fileID: 21300000, guid: 11daea4205c904d90b1d8cb75f01d34e, type: 3}
-  - {fileID: 21300000, guid: e6854e0a36db841ecb8eaf80d65612ac, type: 3}
-  - {fileID: 21300000, guid: fca3521bc800b428c996a0ef702bd512, type: 3}
-  - {fileID: 21300000, guid: 8250d2d3a73b348c098c3f51fcb15e69, type: 3}
-  - {fileID: 21300000, guid: 2540ac47c2aaa46d39e6323f4f03a13f, type: 3}
-  - {fileID: 21300000, guid: dbd5458ab63044efaa9391f70a88e24e, type: 3}
-  - {fileID: 21300000, guid: 97aabd68f248c4f7f828ce3dc325cf86, type: 3}
-  - {fileID: 21300000, guid: a0e28acc716bc470d84cfb8a6066ddf1, type: 3}
-  - {fileID: 21300000, guid: 5a0b634fd390b435db0194a0e0c895d0, type: 3}
-  - {fileID: 21300000, guid: cc46909ada1eb49cface71c3bd952170, type: 3}
-  - {fileID: 21300000, guid: b7fc58e0aa1de460497d9eaf71b25839, type: 3}
-  - {fileID: 21300000, guid: 2b34d742d955d4e38ba38ad57f17674e, type: 3}
+  prefab: {fileID: 0}
+  prefabAmount: 0
+  ground: {fileID: 0}
+  sprites: []
 --- !u!1001 &918926810
 Prefab:
   m_ObjectHideFlags: 0
@@ -2599,28 +2588,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 10
-    m_FontStyle: 1
+    m_Font: {fileID: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 86
-    m_Alignment: 5
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Infected: 0
-
-'
+  m_Text: 
 --- !u!222 &1463692363
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3185,28 +3172,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 10
-    m_FontStyle: 1
+    m_Font: {fileID: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 86
-    m_Alignment: 4
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'PRESS SPACE TO RESTART
-
-'
+  m_Text: 
 --- !u!222 &1745049843
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3606,28 +3591,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 10
-    m_FontStyle: 1
+    m_Font: {fileID: 0}
+    m_FontSize: 14
+    m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 86
-    m_Alignment: 5
+    m_MinSize: 10
+    m_MaxSize: 40
+    m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0
-
-'
+  m_Text: 
 --- !u!222 &1906817610
 CanvasRenderer:
   m_ObjectHideFlags: 0

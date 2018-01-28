@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-    public Text scoreText;
+
     public Text infectedText;
     public Text restartText;
     public Text gameOverText;
@@ -89,7 +89,7 @@ public class GameController : MonoBehaviour {
     }
 
     void UpdateScore () {
-        scoreText.text = "Score: " + score;
+        //scoreText.text = "Score: " + score;
     }
 
     public void GameOver () {
