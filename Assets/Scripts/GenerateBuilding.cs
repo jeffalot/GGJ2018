@@ -2,30 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneratePrefab : MonoBehaviour {
+public class GenerateBuilding : MonoBehaviour {
 
-	public GameObject prefab;
+		public GameObject prefab;
 	public int prefabAmount;
-	public GameObject ground;
+	public GameObject container;
 
 	public Sprite[] sprites;
 
+	/// <summary>
+	/// Awake is called when the script instance is being loaded.
+	/// </summary>
 	void Awake()
 	{
-		float groundBoundsLeft = -ground.transform.localScale.x / 2;
-		float groundBoundsRight = ground.transform.localScale.x / 2;
+		float containerBoundsLeft = -container.transform.localScale.x / 2;
+		float containerBoundsRight = container.transform.localScale.x / 2;
 		for (int i = 0; i < prefabAmount; i++)
 		{
 			GameObject NewCitizen = Instantiate(prefab, new Vector3(
 				Random.Range(
-					groundBoundsLeft,
-					groundBoundsRight
+					containerBoundsLeft,
+					containerBoundsRight
 				),
-				ground.transform.position.y,
+				0,
 				0
 			),
 			Quaternion.identity);
-			NewCitizen.transform.parent = transform;
 			RandomizeSprite(NewCitizen, "NPC");
 		}
 	}
