@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
     public Text scoreText;
@@ -18,8 +19,8 @@ public class GameController : MonoBehaviour {
     public GameObject homeBase;
 
     private GameObject currentGoal;
-    private GameObject leftPointer;
-    private GameObject rightPointer;
+    public GameObject leftPointer;
+    public GameObject rightPointer;
     private bool returnToHomeBase;
 
     void Start () {
@@ -33,16 +34,13 @@ public class GameController : MonoBehaviour {
 
         returnToHomeBase = false;
         toggleNewObjective ();
-
-        // Find our pointers attached to the Camera
-        leftPointer = GameObject.Find ("HandPointerL");
-        rightPointer = GameObject.Find ("HandPointerR");
     }
 
     void Update () {
         if (restart) {
             if (Input.GetKeyDown (KeyCode.R)) {
-                Application.LoadLevel (Application.loadedLevel);
+                Scene loadedLevel = SceneManager.GetActiveScene ();
+                SceneManager.LoadScene (loadedLevel.buildIndex);
             }
         }
 
@@ -60,14 +58,21 @@ public class GameController : MonoBehaviour {
     }
 
     void getNewGoal () {
-        currentGoal = goals[Random.Range (0, goals.Length)];
+        rightPointer.GetComponent<Renderer>().enabled  = false;
+        leftPointer.GetComponent<Renderer>().enabled  = false;
+        int randomGoal = Random.Range (0, goals.Length);
+        
+        Debug.Log("randomGoal Index is " + randomGoal);
+
+        currentGoal = goals[randomGoal];
+
+        Debug.Log("currentGoal name is " + currentGoal.name);
+        Debug.Log("currentGoal x is" + currentGoal.transform.position.x);
 
         if (currentGoal.transform.position.x < 0) {
-            leftPointer.SetActive (true);
-            rightPointer.SetActive (false);
+            leftPointer.GetComponent<Renderer>().enabled  = true;
         } else {
-            leftPointer.SetActive (false);
-            rightPointer.SetActive (true);
+            rightPointer.GetComponent<Renderer>().enabled  = true;
         }
     }
 

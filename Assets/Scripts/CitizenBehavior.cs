@@ -41,7 +41,7 @@ public class CitizenBehavior : MonoBehaviour {
                 }
 
 
-                    Debug.Log("Moving character");
+                    // Debug.Log("Moving character");
                 timeSinceLastMove = 0;
 
 
