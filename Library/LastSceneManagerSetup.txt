@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/pigeontest-hinge.unity
+- path: Assets/Scene/Scene Moving Box.unity
   isLoaded: 1
   isActive: 1
