@@ -12,8 +12,9 @@ public class GeneratePrefab : MonoBehaviour {
 
 	void Awake()
 	{
-		float groundBoundsLeft = -ground.transform.localScale.x / 2;
-		float groundBoundsRight = ground.transform.localScale.x / 2;
+		Collider2D groundCollider = ground.GetComponent<Collider2D>();
+		float groundBoundsLeft = -groundCollider.bounds.size.x / 2;
+		float groundBoundsRight = groundCollider.bounds.size.x / 2;
 		for (int i = 0; i < prefabAmount; i++)
 		{
 			GameObject NewCitizen = Instantiate(prefab, new Vector3(
@@ -26,6 +27,7 @@ public class GeneratePrefab : MonoBehaviour {
 			),
 			Quaternion.identity);
 			NewCitizen.transform.parent = transform;
+			NewCitizen.transform.localScale = new Vector3(1,1,1);
 			RandomizeSprite(NewCitizen, "NPC");
 		}
 	}
