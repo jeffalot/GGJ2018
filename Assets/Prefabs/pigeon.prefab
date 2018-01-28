@@ -1644,6 +1644,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 04fd85ccf96fbdb4aba2120c639778da, type: 3}
   - {fileID: 8300000, guid: d3f504b668180f34a85c47121ebbd280, type: 3}
   - {fileID: 8300000, guid: 3cf0e97ca2222e64eb2ae2606530ccfd, type: 3}
+  wingFlap: {fileID: 8300000, guid: 0a6db705227608f40a078364b979e9f9, type: 3}
   bird_AudioSource: {fileID: 82860397234103734}
 --- !u!212 &212037028562276082
 SpriteRenderer:
