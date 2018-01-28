@@ -10,4 +10,7 @@ public class bottleBehavior : MonoBehaviour {
 			GameController.Instance.triggerCheckpointDeliver();
 		}
 	}
+	void onDisable(){
+		Debug.Log("Disabled");
+	}
 }

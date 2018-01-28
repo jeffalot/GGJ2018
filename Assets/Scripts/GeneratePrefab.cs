@@ -33,7 +33,7 @@ public class GeneratePrefab : MonoBehaviour {
 		// Randomize Sprite
 		SpriteRenderer spriteR = prefab.GetComponent<SpriteRenderer> ();
 		Sprite RandomSprite = sprites[Random.Range (0, sprites.Length)];
-		Debug.Log (spriteName + Random.Range (0, 10));
+		// Debug.Log (spriteName + Random.Range (0, 10));
 		spriteR.sprite = RandomSprite;
 	}
 }

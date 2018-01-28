@@ -24,7 +24,9 @@ public class GameController : MonoBehaviour {
     private GameObject currentGoal;
     public GameObject leftPointer;
     public GameObject rightPointer;
-    private bool returnToHomeBase;
+    public bool returnToHomeBase;
+
+    public GameObject bottle;
 
     void Start () {
         Instance = (GameController) GameObject.FindObjectOfType (typeof (GameController));
@@ -38,6 +40,8 @@ public class GameController : MonoBehaviour {
         UpdateScore ();
 
         returnToHomeBase = false;
+        rightPointer.GetComponent<Renderer> ().enabled = false;
+        leftPointer.GetComponent<Renderer> ().enabled = false;
         toggleNewObjective ();
     }
 
@@ -51,6 +55,9 @@ public class GameController : MonoBehaviour {
 
         checkForRestart ();
         UpdateInfected ();
+        UpdateActivePointer ();
+
+        bottle.SetActive(returnToHomeBase);
     }
 
     public void triggerCheckpointDeliver () {
@@ -59,12 +66,13 @@ public class GameController : MonoBehaviour {
     }
 
     public void toggleNewObjective () {
-        returnToHomeBase = !returnToHomeBase;
+
         if (returnToHomeBase) {
             currentGoal = homeBase;
         } else {
             getNewGoal ();
         }
+        returnToHomeBase = !returnToHomeBase;
     }
 
     void getNewGoal () {
@@ -73,26 +81,32 @@ public class GameController : MonoBehaviour {
 
         int randomGoal = Random.Range (0, goals.Length);
         currentGoal = goals[randomGoal];
+        currentGoal.SetActive(true);
         currentGoal.tag = "currentGoal";
-
-        UpdateActivePointer ();
     }
 
     void clearGoals () {
+        homeBase.SetActive(false);
+        foreach (var goal in goals)
+        {
+            goal.SetActive(false);
+        }
         GameObject lastGoal = GameObject.FindWithTag ("currentGoal");
         if (lastGoal) {
-            lastGoal.tag = "";
+            lastGoal.tag = "Untagged";
         }
     }
 
     void UpdateActivePointer () {
-        rightPointer.GetComponent<Renderer> ().enabled = false;
-        leftPointer.GetComponent<Renderer> ().enabled = false;
-
-        if (currentGoal.transform.position.x < 0) {
+        if (currentGoal.transform.position.x < Camera.main.transform.position.x) {
             leftPointer.GetComponent<Renderer> ().enabled = true;
-        } else {
+        } else if (currentGoal.transform.position.x > Camera.main.transform.position.x) {
             rightPointer.GetComponent<Renderer> ().enabled = true;
+        }
+
+        if (currentGoal.GetComponent<SpriteRenderer>().isVisible){
+            rightPointer.GetComponent<Renderer> ().enabled = false;
+            leftPointer.GetComponent<Renderer> ().enabled = false;
         }
     }
 
