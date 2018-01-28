@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class Infect : MonoBehaviour 
 {
-	void OnCollisionEnter2D (Collision2D collision)
+
+    ParticleSystem ps;
+
+    private void Start()
+    {
+        ps = GetComponentInChildren<ParticleSystem>();
+        //ps = (ParticleSystem) transform.gameObject.GetComponent("Particle System");
+        ps.Stop();
+    }
+
+    void OnCollisionEnter2D (Collision2D collision)
 	{
 		if (collision.gameObject.tag == "Infected"){
 			this.gameObject.tag = "Infected";
+            ps.Play();
 		}
 	}
 }
