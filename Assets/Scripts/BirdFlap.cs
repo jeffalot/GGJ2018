@@ -5,10 +5,12 @@ using UnityEngine;
 public class BirdFlap : MonoBehaviour {
 
         public float speed;
+        public float lift;
 
         private Rigidbody2D rb2d;
         private GameObject leftBounds;
         private GameObject rightBounds;
+        
 
         // Use this for initialization
         void Start () {
@@ -21,7 +23,7 @@ public class BirdFlap : MonoBehaviour {
         void FixedUpdate () {
                 float moveHorizontal = Input.GetAxis ("Horizontal");
 
-                Vector2 movement = new Vector2 (moveHorizontal, 5);
+                Vector2 movement = new Vector2 (moveHorizontal, lift);
 
                 if (Input.GetButtonDown ("Jump"))
                         rb2d.AddForce (movement * speed);
@@ -32,19 +34,8 @@ public class BirdFlap : MonoBehaviour {
                         GetComponent<SpriteRenderer>().flipX = false;
                 }
 
-                // if (transform.position.x > rightBounds.transform.position.x + 1){
-                //         transform.position = new Vector3(
-                //                 rightBounds.transform.position.x,
-                //                 transform.position.y,
-                //                 transform.position.z
-                //         );
-                // }
-                // if (transform.position.x < leftBounds.transform.position.x - 1){
-                //         transform.position = new Vector3(
-                //                 leftBounds.transform.position.x,
-                //                 transform.position.y,
-                //                 transform.position.z
-                //         );
-                // }
+                // Vector3 currentRotation = transform.localRotation.eulerAngles;
+                // currentRotation.y = Mathf.Clamp(currentRotation.y, -30, 30);
+                // transform.localRotation = Quaternion.Euler (currentRotation);
         }
 }

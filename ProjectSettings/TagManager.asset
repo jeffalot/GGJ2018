@@ -8,6 +8,8 @@ TagManager:
   - Infected
   - LeftBounds
   - RightBounds
+  - bottle
+  - currentGoal
   layers:
   - Default
   - TransparentFX

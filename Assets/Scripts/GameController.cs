@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
+
+    public static GameController Instance;
 
     public Text infectedText;
     public Text restartText;
     public Text gameOverText;
+    public Text scoreText;
 
     private bool gameOver;
     private bool restart;
-    private int score;
-    private int infected;
+    public int score;
+    public int infected;
 
     public GameObject[] goals;
     public GameObject homeBase;
@@ -24,6 +27,8 @@ public class GameController : MonoBehaviour {
     private bool returnToHomeBase;
 
     void Start () {
+        Instance = (GameController) GameObject.FindObjectOfType (typeof (GameController));
+
         gameOver = false;
         restart = false;
         restartText.text = "";
@@ -48,31 +53,46 @@ public class GameController : MonoBehaviour {
         UpdateInfected ();
     }
 
+    public void triggerCheckpointDeliver () {
+        AddScore (1);
+        toggleNewObjective ();
+    }
+
     public void toggleNewObjective () {
+        returnToHomeBase = !returnToHomeBase;
         if (returnToHomeBase) {
             currentGoal = homeBase;
         } else {
             getNewGoal ();
         }
-        returnToHomeBase = !returnToHomeBase;
     }
 
     void getNewGoal () {
-        rightPointer.GetComponent<Renderer>().enabled  = false;
-        leftPointer.GetComponent<Renderer>().enabled  = false;
+
+        clearGoals ();
+
         int randomGoal = Random.Range (0, goals.Length);
-        
-        Debug.Log("randomGoal Index is " + randomGoal);
-
         currentGoal = goals[randomGoal];
+        currentGoal.tag = "currentGoal";
 
-        Debug.Log("currentGoal name is " + currentGoal.name);
-        Debug.Log("currentGoal x is" + currentGoal.transform.position.x);
+        UpdateActivePointer ();
+    }
+
+    void clearGoals () {
+        GameObject lastGoal = GameObject.FindWithTag ("currentGoal");
+        if (lastGoal) {
+            lastGoal.tag = "";
+        }
+    }
+
+    void UpdateActivePointer () {
+        rightPointer.GetComponent<Renderer> ().enabled = false;
+        leftPointer.GetComponent<Renderer> ().enabled = false;
 
         if (currentGoal.transform.position.x < 0) {
-            leftPointer.GetComponent<Renderer>().enabled  = true;
+            leftPointer.GetComponent<Renderer> ().enabled = true;
         } else {
-            rightPointer.GetComponent<Renderer>().enabled  = true;
+            rightPointer.GetComponent<Renderer> ().enabled = true;
         }
     }
 
@@ -88,13 +108,13 @@ public class GameController : MonoBehaviour {
         infectedText.text = "Infected: " + infected;
     }
 
-    public void AddScore (int newScoreValue) {
+    void AddScore (int newScoreValue) {
         score += newScoreValue;
         UpdateScore ();
     }
 
     void UpdateScore () {
-        //scoreText.text = "Score: " + score;
+        scoreText.text = "Score: " + score;
     }
 
     public void GameOver () {
