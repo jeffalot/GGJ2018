@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 61909753114470340}
   - component: {fileID: 95836704172652774}
   - component: {fileID: 114237462424254480}
+  - component: {fileID: 114392738587380788}
   m_Layer: 0
   m_Name: Person
   m_TagString: Untagged
@@ -53,8 +54,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1701663770385764}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.8, y: 12.4, z: -4.171875}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.6924934, y: -28.632227, z: 0.6879091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4816077981462936}
@@ -69,7 +70,7 @@ Transform:
   m_GameObject: {fileID: 1594923423956846}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -8.2, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 4121647181290304}
   m_RootOrder: 0
@@ -162,9 +163,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  freq: 5
-  amp: 2
+  freq: 0.1
+  amp: 0.1
   seed: 0
+--- !u!114 &114392738587380788
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1594923423956846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b29f971afa0c46f799c639a6424d2d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toxicity: 50
 --- !u!212 &212174774616850100
 SpriteRenderer:
   m_ObjectHideFlags: 1

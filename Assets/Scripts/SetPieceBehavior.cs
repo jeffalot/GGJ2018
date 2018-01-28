@@ -9,12 +9,23 @@ public class SetPieceBehavior : MonoBehaviour {
 
 
     //Function to set destruction level, baseDestructionLevel 
-    public void RandomizeDestruction(int baseDestructionLevel)
+
+        //baseDestructionLevel - Is previous level
+        //maxDestructionLevel - Is max destruction level you can achieve 
+    public void RandomizeDestruction(int baseDestructionLevel, int maxDestructionLevel)
     {
         // Randomize Destruction
         SpriteRenderer spriteR = GetComponent<SpriteRenderer>();
-        Sprite RandomSprite = sprites[Random.Range(0, sprites.Length)];
-        //Debug.Log(spriteName + Random.Range(0, 10));
+
+        if(maxDestructionLevel > sprites.Length)
+        {
+            maxDestructionLevel = sprites.Length;
+        }
+
+        int newDestructionLevel = Random.Range(Mathf.Max(currentDestructionLevel, baseDestructionLevel), maxDestructionLevel);
+        currentDestructionLevel = newDestructionLevel;
+        Sprite RandomSprite = sprites[newDestructionLevel];
+        Debug.Log("Setting Sprite to: " + newDestructionLevel);
         spriteR.sprite = RandomSprite;
     }
 

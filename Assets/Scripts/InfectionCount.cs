@@ -14,10 +14,10 @@ public class InfectionCount : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(Mathf.Floor(Time.time) > timeWorkedOn)
+		if(Mathf.Floor(Time.time) > timeWorkedOn + 2)
         {
             timeWorkedOn = Mathf.Floor(Time.time);
-            Debug.Log("One second passed " + timeWorkedOn);
+            Debug.Log("Three seconds passed " + timeWorkedOn);
             Debug.Log(countInfected() + "infected objects");
 
         }
@@ -43,12 +43,11 @@ public class InfectionCount : MonoBehaviour {
 
         Component[] objects = Resources.FindObjectsOfTypeAll(typeof(SetPieceBehavior)) as Component[];
 
-            foreach (Object o in objects)
+            foreach (Component c in objects)
         {
-            Debug.Log(o.ToString());
-            GameObject go = (GameObject)o;
-            SetPieceBehavior spb = go.GetComponent<SetPieceBehavior>();
-            spb.RandomizeDestruction(0);
+            Debug.Log(c.ToString());
+            SetPieceBehavior spb = (SetPieceBehavior)c;
+            spb.RandomizeDestruction(0, 5);
         }
 
     }
