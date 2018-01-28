@@ -10,32 +10,30 @@ public class GeneratePrefab : MonoBehaviour {
 
 	public Sprite[] sprites;
 
-	void Awake()
-	{
-		Collider2D groundCollider = ground.GetComponent<Collider2D>();
+	void Awake () {
+		Collider2D groundCollider = ground.GetComponent<Collider2D> ();
 		float groundBoundsLeft = -groundCollider.bounds.size.x / 2;
 		float groundBoundsRight = groundCollider.bounds.size.x / 2;
-		for (int i = 0; i < prefabAmount; i++)
-		{
-			GameObject NewCitizen = Instantiate(prefab, new Vector3(
-				Random.Range(
-					groundBoundsLeft,
-					groundBoundsRight
+		for (int i = 0; i < prefabAmount; i++) {
+			GameObject NewCitizen = Instantiate (prefab, new Vector3 (
+					Random.Range (
+						groundBoundsLeft,
+						groundBoundsRight
+					),
+					ground.transform.position.y,
+					0
 				),
-				ground.transform.position.y,
-				0
-			),
-			Quaternion.identity);
+				Quaternion.identity);
 			NewCitizen.transform.parent = transform;
-			NewCitizen.transform.localScale = new Vector3(1,1,1);
-			RandomizeSprite(NewCitizen, "NPC");
+			NewCitizen.transform.localScale = new Vector3 (1, 1, 1);
+			RandomizeSprite (NewCitizen, "NPC");
 		}
 	}
-	void RandomizeSprite(GameObject prefab, string spriteName){
+	void RandomizeSprite (GameObject prefab, string spriteName) {
 		// Randomize Sprite
-		SpriteRenderer spriteR = prefab.GetComponent<SpriteRenderer>();
-		Sprite RandomSprite = sprites[Random.Range(0, sprites.Length)];
-		Debug.Log(spriteName + Random.Range(0,10));
+		SpriteRenderer spriteR = prefab.GetComponent<SpriteRenderer> ();
+		Sprite RandomSprite = sprites[Random.Range (0, sprites.Length)];
+		Debug.Log (spriteName + Random.Range (0, 10));
 		spriteR.sprite = RandomSprite;
 	}
 }
