@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CitizenBehavior : MonoBehaviour {
 
-
     public float speed;
 
     private Rigidbody2D rb2d;
@@ -19,52 +18,41 @@ public class CitizenBehavior : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        rb2d = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D> ();
     }
 
-    private void FixedUpdate()
-    {
+    private void FixedUpdate () {
         //Wait every so often before giving character a bump
         if (timeSinceLastMove > 60)
 
         {
-            if (Random.value > .9) {
+            if (Random.value >.9) {
 
-                if (timesToMoveInOneDirection > timesMoved)
-                {
+                if (timesToMoveInOneDirection > timesMoved) {
                     direction = direction * -1;
                     timesMoved = 1;
-                }
-                else
-                {
+                } else {
                     timesMoved += 1;
                 }
 
-
-                    // Debug.Log("Moving character");
+                // Debug.Log("Moving character");
                 timeSinceLastMove = 0;
-
 
                 float moveHorizontal = 1;
 
-            //Give character a bump to the right or left
-            Vector2 movement = new Vector2(moveHorizontal, 1);
+                //Give character a bump to the right or left
+                Vector2 movement = new Vector2 (moveHorizontal, 1);
 
-                rb2d.AddForce(movement * speed);
+                rb2d.AddForce (movement * speed);
             }
 
-        
-
-        }
-        else
-        {
+        } else {
             timeSinceLastMove += 1;
         }
     }
 
-    private void Update()
-    {
-       
+    private void Update () {
+
     }
 
 }

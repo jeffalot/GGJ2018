@@ -11,8 +11,8 @@ public class CameraBehavior : MonoBehaviour {
 
 	private GameObject player;
 
-	public float transitionDuration = 2.5f;
-	public Transform StartTarget;
+	public float transitionDuration = 0;
+	public Vector3 StartTarget;
 
 	IEnumerator Transition()
 	{
@@ -21,9 +21,8 @@ public class CameraBehavior : MonoBehaviour {
 		while (t < 1.0f)
 		{
 			t += Time.deltaTime * (Time.timeScale/transitionDuration);
-
-		transform.position = Vector3.Lerp(startingPos, target.position, t);
-		yield return 0;
+			transform.position = Vector3.Lerp(startingPos, StartTarget, t);
+			yield return 0;
 		}
 	}
 
@@ -35,10 +34,7 @@ public class CameraBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Input.GetButtonDown ("Jump")) {
-			start = true;
-			StartCoroutine(Transition());
-		}
+
 
 		if (start){
 			
@@ -53,6 +49,12 @@ public class CameraBehavior : MonoBehaviour {
 				transform.position.y,
 				transform.position.z
 			);
+		} else {
+			if (Input.GetButtonDown ("Jump")) {
+				start = true;
+				// StartCoroutine(Transition());
+				transform.position = StartTarget;
+			}
 		}
 
 
