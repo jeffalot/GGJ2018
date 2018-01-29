@@ -28,6 +28,10 @@ public class GameController : MonoBehaviour {
 
     public GameObject bottle;
 
+    //public AudioSource overallAudio;
+    //public AudioClip[] overallAudios;
+
+
     void Start () {
         Instance = (GameController) GameObject.FindObjectOfType (typeof (GameController));
 
@@ -43,6 +47,12 @@ public class GameController : MonoBehaviour {
         rightPointer.GetComponent<Renderer> ().enabled = false;
         leftPointer.GetComponent<Renderer> ().enabled = false;
         toggleNewObjective ();
+
+
+        //int n = Random.Range(1, overallAudios.Length);
+        //overallAudio.clip = overallAudios[n];
+        //overallAudio.PlayOneShot(overallAudio.clip);
+
     }
 
     void Update () {
@@ -51,6 +61,18 @@ public class GameController : MonoBehaviour {
                 Scene loadedLevel = SceneManager.GetActiveScene ();
                 SceneManager.LoadScene (loadedLevel.buildIndex);
             }
+        }
+
+        //Handle Scene Restart
+        if (Input.GetButton("Restart"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+
         }
 
         checkForRestart ();
