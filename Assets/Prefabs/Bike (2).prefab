@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4957335533565360}
   - component: {fileID: 212390721861519378}
+  - component: {fileID: 114612141277380832}
   m_Layer: 0
   m_Name: Bike (2)
   m_TagString: Untagged
@@ -40,6 +41,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114612141277380832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1343296798347266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5506ccf528167514aa3aee3a5baebab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: a1ea34588c05542ec87938aaebd9ee78, type: 3}
+  - {fileID: 21300000, guid: d00b17659a65f9e4abdca05c8268a8a8, type: 3}
+  - {fileID: 21300000, guid: f11cd211bae8a3d4ca528d4aebc2f6a6, type: 3}
+  - {fileID: 21300000, guid: f02f5107c1d901a41ab6c0e00d86af4a, type: 3}
+  - {fileID: 21300000, guid: 808a831583c989745ae72c467b751b5d, type: 3}
 --- !u!212 &212390721861519378
 SpriteRenderer:
   m_ObjectHideFlags: 1
