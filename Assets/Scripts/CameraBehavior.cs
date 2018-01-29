@@ -28,6 +28,7 @@ public class CameraBehavior : MonoBehaviour {
 
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
+		player.SetActive(false);
 		start = false;
 	}
 
@@ -51,6 +52,7 @@ public class CameraBehavior : MonoBehaviour {
 			);
 		} else {
 			if (Input.GetButtonDown ("Jump")) {
+				player.SetActive(true);
 				start = true;
 				// StartCoroutine(Transition());
 				transform.position = StartTarget;
