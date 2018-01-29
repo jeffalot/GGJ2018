@@ -16,16 +16,16 @@ public class InfectionCount : MonoBehaviour {
     void Update () {
         if (Mathf.Floor (Time.time) > timeWorkedOn + 2) {
             timeWorkedOn = Mathf.Floor (Time.time);
-            Debug.Log ("Three seconds passed " + timeWorkedOn);
-            Debug.Log (countInfected () + "infected objects");
+            // Debug.Log ("Three seconds passed " + timeWorkedOn);
+            // Debug.Log (countInfected () + "infected objects");
         }
     }
 
     int countInfected () {
 
-        infectedThings = GameObject.FindGameObjectsWithTag ("Infected").Length;
+        infectedThings = GameObject.FindGameObjectsWithTag ("Infected").Length - 18;
 
-        if (infectedThings > 20) {
+        if (infectedThings > 18) {
             destroyScenery (3);
         }
 
@@ -38,7 +38,7 @@ public class InfectionCount : MonoBehaviour {
         Component[] objects = Resources.FindObjectsOfTypeAll (typeof (SetPieceBehavior)) as Component[];
 
         foreach (Component c in objects) {
-            Debug.Log (c.ToString ());
+            // Debug.Log (c.ToString ());
             SetPieceBehavior spb = (SetPieceBehavior) c;
             spb.RandomizeDestruction (Base, Base + 1);
         }

@@ -13,15 +13,15 @@ public class BirdFlap : MonoBehaviour {
         public AudioSource bird_AudioSource;
 
         private Rigidbody2D rb2d;
-        private GameObject leftBounds;
-        private GameObject rightBounds;
+        // private GameObject leftBounds;
+        // private GameObject rightBounds;
 
         // Use this for initialization
         void Start () {
                 rb2d = GetComponent<Rigidbody2D> ();
                 bird_AudioSource = GetComponent<AudioSource> ();
-                leftBounds = GameObject.FindWithTag ("LeftBounds");
-                rightBounds = GameObject.FindWithTag ("RightBounds");
+                // leftBounds = GameObject.FindWithTag ("LeftBounds");
+                // rightBounds = GameObject.FindWithTag ("RightBounds");
         }
 
         private void OnCollisionEnter2D (Collision2D collision) {

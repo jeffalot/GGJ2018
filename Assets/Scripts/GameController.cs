@@ -83,6 +83,7 @@ public class GameController : MonoBehaviour {
     }
 
     public void triggerCheckpointDeliver () {
+        Debug.Log("XXXXXXX");
         AddScore (1);
         toggleNewObjective ();
     }
