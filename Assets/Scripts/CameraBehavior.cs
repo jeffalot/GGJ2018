@@ -7,29 +7,55 @@ public class CameraBehavior : MonoBehaviour {
 	public GameObject cameraBoundsMin;
 	public GameObject cameraBoundsMax;
 
+	private bool start;
+
 	private GameObject player;
 
-	/// <summary>
-	/// Start is called on the frame when a script is enabled just before
-	/// any of the Update methods is called the first time.
-	/// </summary>
+	public float transitionDuration = 0;
+	public Vector3 StartTarget;
+
+	IEnumerator Transition()
+	{
+		float t = 0.0f;
+		Vector3 startingPos = transform.position;
+		while (t < 1.0f)
+		{
+			t += Time.deltaTime * (Time.timeScale/transitionDuration);
+			transform.position = Vector3.Lerp(startingPos, StartTarget, t);
+			yield return 0;
+		}
+	}
+
 	void Start () {
 		player = GameObject.FindWithTag ("Player");
+		start = false;
 	}
 
 	// Update is called once per frame
 	void Update () {
-		float newCameraPosX = Mathf.Clamp (
-			player.transform.position.x,
-			cameraBoundsMin.transform.position.x,
-			cameraBoundsMax.transform.position.x
-		);
 
-		transform.position = new Vector3 (
-			newCameraPosX,
-			transform.position.y,
-			transform.position.z
-		);
+
+
+		if (start){
+			
+			float newCameraPosX = Mathf.Clamp (
+				player.transform.position.x,
+				cameraBoundsMin.transform.position.x,
+				cameraBoundsMax.transform.position.x
+			);
+
+			transform.position = new Vector3 (
+				newCameraPosX,
+				transform.position.y,
+				transform.position.z
+			);
+		} else {
+			if (Input.GetButtonDown ("Jump")) {
+				start = true;
+				// StartCoroutine(Transition());
+				transform.position = StartTarget;
+			}
+		}
 
 
 		// Current Goal Pointer

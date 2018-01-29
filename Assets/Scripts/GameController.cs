@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
+
+    public static GameController Instance;
 
     public Text infectedText;
     public Text restartText;
     public Text gameOverText;
+    public Text scoreText;
 
     private bool gameOver;
     private bool restart;
-    private int score;
-    private int infected;
+    public int score;
+    public int infected;
 
     public GameObject[] goals;
     public GameObject homeBase;
@@ -21,13 +24,17 @@ public class GameController : MonoBehaviour {
     private GameObject currentGoal;
     public GameObject leftPointer;
     public GameObject rightPointer;
-    private bool returnToHomeBase;
+    public bool returnToHomeBase;
+
+    public GameObject bottle;
 
     //public AudioSource overallAudio;
     //public AudioClip[] overallAudios;
 
 
     void Start () {
+        Instance = (GameController) GameObject.FindObjectOfType (typeof (GameController));
+
         gameOver = false;
         restart = false;
         restartText.text = "";
@@ -37,6 +44,8 @@ public class GameController : MonoBehaviour {
         UpdateScore ();
 
         returnToHomeBase = false;
+        rightPointer.GetComponent<Renderer> ().enabled = false;
+        leftPointer.GetComponent<Renderer> ().enabled = false;
         toggleNewObjective ();
 
 
@@ -68,9 +77,18 @@ public class GameController : MonoBehaviour {
 
         checkForRestart ();
         UpdateInfected ();
+        UpdateActivePointer ();
+
+        bottle.SetActive(returnToHomeBase);
+    }
+
+    public void triggerCheckpointDeliver () {
+        AddScore (1);
+        toggleNewObjective ();
     }
 
     public void toggleNewObjective () {
+
         if (returnToHomeBase) {
             currentGoal = homeBase;
         } else {
@@ -80,21 +98,37 @@ public class GameController : MonoBehaviour {
     }
 
     void getNewGoal () {
-        rightPointer.GetComponent<Renderer>().enabled  = false;
-        leftPointer.GetComponent<Renderer>().enabled  = false;
+
+        clearGoals ();
+
         int randomGoal = Random.Range (0, goals.Length);
-        
-        Debug.Log("randomGoal Index is " + randomGoal);
-
         currentGoal = goals[randomGoal];
+        currentGoal.SetActive(true);
+        currentGoal.tag = "currentGoal";
+    }
 
-        Debug.Log("currentGoal name is " + currentGoal.name);
-        Debug.Log("currentGoal x is" + currentGoal.transform.position.x);
+    void clearGoals () {
+        homeBase.SetActive(false);
+        foreach (var goal in goals)
+        {
+            goal.SetActive(false);
+        }
+        GameObject lastGoal = GameObject.FindWithTag ("currentGoal");
+        if (lastGoal) {
+            lastGoal.tag = "Untagged";
+        }
+    }
 
-        if (currentGoal.transform.position.x < 0) {
-            leftPointer.GetComponent<Renderer>().enabled  = true;
-        } else {
-            rightPointer.GetComponent<Renderer>().enabled  = true;
+    void UpdateActivePointer () {
+        if (currentGoal.transform.position.x < Camera.main.transform.position.x) {
+            leftPointer.GetComponent<Renderer> ().enabled = true;
+        } else if (currentGoal.transform.position.x > Camera.main.transform.position.x) {
+            rightPointer.GetComponent<Renderer> ().enabled = true;
+        }
+
+        if (currentGoal.GetComponent<SpriteRenderer>().isVisible){
+            rightPointer.GetComponent<Renderer> ().enabled = false;
+            leftPointer.GetComponent<Renderer> ().enabled = false;
         }
     }
 
@@ -110,13 +144,13 @@ public class GameController : MonoBehaviour {
         infectedText.text = "Infected: " + infected;
     }
 
-    public void AddScore (int newScoreValue) {
+    void AddScore (int newScoreValue) {
         score += newScoreValue;
         UpdateScore ();
     }
 
     void UpdateScore () {
-        //scoreText.text = "Score: " + score;
+        scoreText.text = "Score: " + score;
     }
 
     public void GameOver () {

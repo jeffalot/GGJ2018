@@ -16,16 +16,18 @@ public class Infect : MonoBehaviour
 
     private void Start()
     {
-        ps = GetComponentInChildren<ParticleSystem>();
+        // ps = GetComponentInChildren<ParticleSystem>();
         //ps = (ParticleSystem) transform.gameObject.GetComponent("Particle System");
-        ps.Stop();
+        // ps.Stop();
     }
 
     void OnCollisionEnter2D (Collision2D collision)
 	{
-		if (collision.gameObject.tag == "Infected" && (Random.Range(0, 100) < ((Infect) collision.gameObject.GetComponent<Infect>()).toxicity)) {
+        float collisionToxicity = (Infect) collision.gameObject.GetComponent<Infect>()).toxicity;
+        Debug.Log(collisionToxicity);
+		if (collision.gameObject.tag == "Infected" && (Random.Range(0, 100) < collisionToxicity) {
 			this.gameObject.tag = "Infected";
-            ps.Play();
+            // ps.Play();
 		}
 	}
 }
