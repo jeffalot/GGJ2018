@@ -23,6 +23,10 @@ public class GameController : MonoBehaviour {
     public GameObject rightPointer;
     private bool returnToHomeBase;
 
+    //public AudioSource overallAudio;
+    //public AudioClip[] overallAudios;
+
+
     void Start () {
         gameOver = false;
         restart = false;
@@ -34,6 +38,12 @@ public class GameController : MonoBehaviour {
 
         returnToHomeBase = false;
         toggleNewObjective ();
+
+
+        //int n = Random.Range(1, overallAudios.Length);
+        //overallAudio.clip = overallAudios[n];
+        //overallAudio.PlayOneShot(overallAudio.clip);
+
     }
 
     void Update () {
@@ -42,6 +52,18 @@ public class GameController : MonoBehaviour {
                 Scene loadedLevel = SceneManager.GetActiveScene ();
                 SceneManager.LoadScene (loadedLevel.buildIndex);
             }
+        }
+
+        //Handle Scene Restart
+        if (Input.GetButton("Restart"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (Input.GetKey("escape"))
+        {
+            Application.Quit();
+
         }
 
         checkForRestart ();
